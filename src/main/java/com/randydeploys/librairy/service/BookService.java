@@ -26,10 +26,14 @@ public class BookService {
     }
 
     public Book createBook(BookDTO dto) {
+    if (bookRepository.existsByIsbn(dto.getIsbn())) {
+            throw new RuntimeException("Un livre avec cet ISBN existe déjà");
+        }
         Book book = new Book();
         book.setTitle(dto.getTitle());
         book.setAuthor(dto.getAuthor());
         book.setPrice(dto.getPrice());
+        book.setIsbn(dto.getIsbn());
         return bookRepository.save(book);
     }
 

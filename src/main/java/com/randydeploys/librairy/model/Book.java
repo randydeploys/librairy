@@ -1,5 +1,6 @@
 package com.randydeploys.librairy.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,5 +37,8 @@ public class Book {
 
     @Min(value = 0, message = "Le prix doit être supérieur à 0")
     private Double price;
+
+    @Column(unique = true)
+    private String isbn;
 }
 
