@@ -1,5 +1,6 @@
 package com.randydeploys.librairy.controller;
 
+import com.randydeploys.librairy.dto.BookDTO;
 import com.randydeploys.librairy.model.Book;
 import com.randydeploys.librairy.repository.BookRepository;
 import com.randydeploys.librairy.service.BookService;
@@ -34,14 +35,14 @@ public class BookRestController {
 
     // POST créer un livre
     @PostMapping
-    public Book create(@Valid @RequestBody Book book) {
-        return bookService.createBook(book);
+    public Book create(@Valid @RequestBody BookDTO dto) {
+        return bookService.createBook(dto);
     }
 
     // PUT modifier un livre
     @PutMapping("/{id}")
-    public Book update(@PathVariable Long id, @RequestBody Book book) {
-        return bookService.updateBook(id, book);
+    public Book update(@PathVariable Long id, @RequestBody BookDTO dto) {
+        return bookService.updateBook(id, dto);
     }
 
     // DELETE supprimer un livre

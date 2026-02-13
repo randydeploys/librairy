@@ -27,13 +27,14 @@ public class Book {
     private Long id;
 
     @NotBlank(message = "Le titre est obligatoire")
-    @Size(min = 1, max = 255, message = "Le titre doit faire entre 1 et 255 caractères")
+    @Size(min = 2, max = 255, message = "Le titre doit faire entre 2 et 255 caractères")
     private String title;
 
     @NotBlank(message = "L'auteur est obligatoire")
-    @Size(min = 1, max = 255, message = "L'auteur doit faire entre 1 et 255 caractères")
+    @Size(min = 2, max = 255, message = "L'auteur doit faire entre 2 et 255 caractères")
     private String author;
 
     @Min(value = 0, message = "Le prix doit être supérieur à 0")
     private Double price;
 }
+

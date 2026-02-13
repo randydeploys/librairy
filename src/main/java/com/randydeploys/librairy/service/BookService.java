@@ -1,5 +1,6 @@
 package com.randydeploys.librairy.service;
 
+import com.randydeploys.librairy.dto.BookDTO;
 import com.randydeploys.librairy.model.Book;
 import com.randydeploys.librairy.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -24,22 +25,21 @@ public class BookService {
 
     }
 
-    public Book createBook(Book book) {
-
-        if (book.getPrice() == null || book.getPrice() <= 0) {
-            throw new RuntimeException("Le prix doit être supérieur à 0");
-        }
+    public Book createBook(BookDTO dto) {
+        Book book = new Book();
+        book.setTitle(dto.getTitle());
+        book.setAuthor(dto.getAuthor());
+        book.setPrice(dto.getPrice());
         return bookRepository.save(book);
     }
 
-    public Book updateBook(Long id, Book bookDetails) {
+    public Book updateBook(Long id, BookDTO dto) {
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Livre non trouvé avec id: " + id));
 
-        book.setTitle(bookDetails.getTitle());
-        book.setAuthor(bookDetails.getAuthor());
-        book.setPrice(bookDetails.getPrice());
-
+        book.setTitle(dto.getTitle());
+        book.setAuthor(dto.getAuthor());
+        book.setPrice(dto.getPrice());
         return bookRepository.save(book);
     }
 
