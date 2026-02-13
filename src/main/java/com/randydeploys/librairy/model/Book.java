@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
@@ -22,7 +25,15 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Le titre est obligatoire")
+    @Size(min = 1, max = 255, message = "Le titre doit faire entre 1 et 255 caractères")
     private String title;
+
+    @NotBlank(message = "L'auteur est obligatoire")
+    @Size(min = 1, max = 255, message = "L'auteur doit faire entre 1 et 255 caractères")
     private String author;
-    private double price;
+
+    @Min(value = 0, message = "Le prix doit être supérieur à 0")
+    private Double price;
 }

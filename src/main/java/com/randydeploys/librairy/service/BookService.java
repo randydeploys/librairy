@@ -26,7 +26,7 @@ public class BookService {
 
     public Book createBook(Book book) {
 
-        if (book.getPrice() <= 0) {
+        if (book.getPrice() == null || book.getPrice() <= 0) {
             throw new RuntimeException("Le prix doit être supérieur à 0");
         }
         return bookRepository.save(book);

@@ -1,8 +1,10 @@
-package com.randydeploys.librairy;
+package com.randydeploys.librairy.controller;
 
 import com.randydeploys.librairy.model.Book;
 import com.randydeploys.librairy.repository.BookRepository;
 import com.randydeploys.librairy.service.BookService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +34,7 @@ public class BookRestController {
 
     // POST créer un livre
     @PostMapping
-    public Book create(@RequestBody Book book) {
+    public Book create(@Valid @RequestBody Book book) {
         return bookService.createBook(book);
     }
 
